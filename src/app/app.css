@@ -1,0 +1,520 @@
+/* Layout Principal */
+.container {
+  max-width: 1000px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  color: #1e293b;
+}
+
+.header {
+  margin-bottom: 1.5rem;
+}
+
+.header h1 {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin: 0 0 0.25rem 0;
+}
+
+.header p {
+  color: #64748b;
+  margin: 0;
+  font-size: 0.95rem;
+}
+
+/* Estados de Carga y Error */
+.state-card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 2rem;
+  background-color: #f8fafc;
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+  color: #475569;
+}
+
+.state-card.error {
+  background-color: #fef2f2;
+  border-color: #fecaca;
+  color: #dc2626;
+}
+
+.spinner {
+  width: 20px;
+  height: 20px;
+  border: 3px solid #cbd5e1;
+  border-top-color: #4f46e5;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Tabla Personalizada */
+.table-container {
+  overflow-x: auto;
+  background: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.06);
+  border: 1px solid #e2e8f0;
+}
+
+.custom-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 0.95rem;
+}
+
+.custom-table th {
+  background-color: #f8fafc;
+  padding: 0.75rem 1rem;
+  font-weight: 600;
+  color: #475569;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.custom-table td {
+  padding: 0.85rem 1rem;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.clickable-row {
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.clickable-row:hover {
+  background-color: #e0f2fe; /* Sky light blue */
+}
+
+.code-cell {
+  font-family: monospace;
+  font-weight: 600;
+  color: #64748b;
+}
+
+.name-cell {
+  font-weight: 500;
+  color: #0f172a;
+}
+
+.cert-tag {
+  background-color: #f1f5f9;
+  color: #334155;
+  padding: 0.25rem 0.6rem;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+.empty-cell {
+  text-align: center;
+  color: #94a3b8;
+  padding: 2rem;
+}
+
+/* Badges de Estado */
+.status-badge {
+  display: inline-block;
+  padding: 0.25rem 0.65rem;
+  border-radius: 9999px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+.status-badge.atendido {
+  background-color: #dcfce7;
+  color: #15803d;
+}
+
+.status-badge.no-atendido {
+  background-color: #fee2e2;
+  color: #b91c1c;
+}
+
+/* Ventana Emergente (Pop-up Modal) */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(15, 23, 42, 0.5);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background: #ffffff;
+  border-radius: 12px;
+  width: 100%;
+  max-width: 480px;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  overflow: hidden;
+  animation: modalSlide 0.2s ease-out;
+}
+
+@keyframes modalSlide {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.modal-header h2 {
+  font-size: 1.15rem;
+  font-weight: 600;
+  margin: 0;
+  color: #0f172a;
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  line-height: 1;
+  color: #94a3b8;
+  cursor: pointer;
+  padding: 0;
+}
+
+.close-btn:hover {
+  color: #0f172a;
+}
+
+.modal-body {
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.form-group label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #475569;
+}
+
+/* Inputs Unificados (Base) */
+.input-editable,
+.input-disabled {
+  padding: 0.6rem 0.8rem;
+  border-radius: 6px;
+  font-size: 0.95rem;
+}
+
+.input-editable {
+  border: 1px solid #cbd5e1;
+  color: #0f172a;
+  background-color: #ffffff;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.input-editable:focus {
+  border-color: #4f46e5;
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.15);
+}
+
+.input-disabled {
+  border: 1px solid #e2e8f0;
+  background-color: #f1f5f9;
+  color: #64748b;
+  cursor: not-allowed;
+}
+
+.status-container {
+  padding-top: 0.25rem;
+}
+
+/* Dropdown List y Contenedor (Flecha CSS pura) */
+.select-wrapper {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.select-wrapper::after {
+  content: '';
+  position: absolute;
+  right: 1rem;
+  pointer-events: none;
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 6px solid #475569;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+/* Ocultar la flecha si el select está deshabilitado */
+.select-wrapper:has(.select-editable:disabled)::after {
+  opacity: 0.4;
+}
+
+.select-editable {
+  width: 100%;
+  padding: 0.6rem 2.5rem 0.6rem 0.8rem;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  font-family: inherit;
+  color: #0f172a;
+  background-color: #ffffff;
+  outline: none;
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.select-editable:hover {
+  border-color: #94a3b8;
+}
+
+.select-editable:focus {
+  border-color: #4f46e5;
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.15);
+}
+
+/* Estilos de cualquier input o select deshabilitado dentro del modal */
+.input-editable:disabled,
+.select-editable:disabled {
+  background-color: #f1f5f9;
+  color: #64748b;
+  border-color: #e2e8f0;
+  cursor: not-allowed;
+  opacity: 0.9;
+}
+
+/* Integración Angular Material Datepicker */
+.full-width-material {
+  width: 100%;
+}
+
+.full-width-material .mat-mdc-form-field-subscript-wrapper {
+  display: none;
+}
+
+.mat-mdc-form-field {
+  --mdc-outlined-text-field-container-shape: 6px;
+}
+
+/* Footer y Botones del Modal */
+.modal-footer {
+  padding: 1rem 1.25rem;
+  background-color: #f8fafc;
+  border-top: 1px solid #e2e8f0;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 1rem;
+}
+
+.footer-left-actions {
+  display: flex;
+  gap: 0.75rem;
+  margin-right: auto; /* Empuja los botones izquierdos (Editar/Anular) a la izquierda */
+}
+
+/* Estilos Base Unificados para Todos los Botones */
+.btn-primary,
+.btn-secondary,
+.btn-danger {
+  min-width: 90px;
+  padding: 0.55rem 1.25rem;
+  border-radius: 6px;
+  font-weight: 500;
+  font-size: 0.9rem;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+/* Botón Primario (Guardar / Editar) */
+.btn-primary {
+  background-color: #4f46e5;
+  color: #ffffff;
+}
+
+.btn-primary:hover {
+  background-color: #4338ca;
+}
+
+/* Botón Secundario (Cerrar / Cancelar) */
+.btn-secondary {
+  background-color: #e2e8f0;
+  color: #334155;
+}
+
+.btn-secondary:hover {
+  background-color: #cbd5e1;
+}
+
+/* Botón Danger (Anular) */
+.btn-danger {
+  background-color: #dc2626;
+  color: #ffffff;
+}
+
+.btn-danger:hover {
+  background-color: #b91c1c;
+}
+
+/* Layout del Header con Buscador */
+.header {
+  margin-bottom: 1.5rem;
+  width: 100%; /* Asegura que no sobrepase el ancho de la tabla */
+  box-sizing: border-box;
+}
+
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 1rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.header-titles {
+  flex: 1;
+}
+
+/* Caja de Búsqueda Alineada */
+.search-box {
+  position: relative;
+  width: 100%;
+  max-width: 320px; /* Ajusta el ancho máximo según prefieras */
+  box-sizing: border-box;
+}
+
+.input-search {
+  width: 100%;
+  box-sizing: border-box; /* Evita que el padding saque el input del contenedor */
+  padding: 0.6rem 2.2rem 0.6rem 0.85rem;
+  border-radius: 6px;
+  border: 1px solid #cbd5e1;
+  font-size: 0.9rem;
+  color: #0f172a;
+  background-color: #ffffff;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.input-search:focus {
+  border-color: #4f46e5;
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.15);
+}
+
+.clear-search-btn {
+  position: absolute;
+  right: 0.6rem;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: #94a3b8;
+  font-size: 1.1rem;
+  cursor: pointer;
+  padding: 0;
+  line-height: 1;
+}
+
+.clear-search-btn:hover {
+  color: #0f172a;
+}
+
+
+
+ /* pagination */
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  margin-top: 20px;
+  flex-wrap: wrap;
+}
+
+.page-btn {
+  padding: 6px 12px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  background: white;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.2s;
+}
+
+.page-btn:hover:not(:disabled) {
+  background: #2E75B6;
+  color: white;
+  border-color: #2E75B6;
+}
+
+.page-btn.active {
+  background: #2E75B6;
+  color: white;
+  border-color: #2E75B6;
+  font-weight: bold;
+}
+
+.page-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.page-info {
+  text-align: center;
+  color: #666;
+  font-size: 13px;
+  margin-top: 8px;
+}
+
+.btn-buscar {
+  padding: 8px 16px;
+  background: #2E75B6;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.btn-buscar:hover {
+  background: #1F4E79;
+}
