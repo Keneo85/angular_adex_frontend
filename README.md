@@ -26,3 +26,26 @@ Aplicación web desarrollada en **Angular 22** para la gestión y visualización
 
 ## 📸 Vista previa
 ![Listado de Alumnos](screenshot.png)
+
+
+
+Notas:
+Paquetes NPM instalados:
+-npm install @angular/material
+-npm install @angular/cdk
+
+Módulos de Angular Material usados:
+-MatFormFieldModule
+-MatInputModule
+-MatDatepickerModule
+-provideNativeDateAdapter
+
+Librerías ya incluidas en Angular:
+-FormsModule — para ngModel y two-way binding
+-HttpClient con withFetch() — para llamadas al API
+-RxJS — para el debounce (Subject, debounceTime, distinctUntilChanged, takeUntil)
+
+
+Configuraciones aplicadas:
+En app.config.ts:
+provideHttpClient(withFetch())
