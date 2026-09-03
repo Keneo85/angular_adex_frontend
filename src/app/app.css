@@ -518,3 +518,41 @@
 .btn-buscar:hover {
   background: #1F4E79;
 }
+
+
+ /* Botoner para Exportar */
+ .export-buttons {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+  margin-bottom: 10px;
+  margin-top: 10px; /* ← agrega esta línea */
+}
+
+.btn-export-excel {
+  padding: 8px 16px;
+  background: #1D6F42;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.btn-export-excel:hover {
+  background: #155234;
+}
+
+.btn-export-pdf {
+  padding: 8px 16px;
+  background: #C0392B;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.btn-export-pdf:hover {
+  background: #922B21;
+}

@@ -9,6 +9,12 @@ import { provideNativeDateAdapter } from '@angular/material/core';
 import { FormsModule } from '@angular/forms';
 import { Subject, debounceTime, distinctUntilChanged, takeUntil } from 'rxjs';
 
+//librerias para reporte
+import * as XLSX from 'xlsx';
+import { saveAs } from 'file-saver';
+import jsPDF from 'jspdf';
+import autoTable from 'jspdf-autotable';
+
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -159,5 +165,39 @@ export class App implements OnInit, OnDestroy {
         },
         error: (err) => console.error('Error al anular:', err)
       });
+  }
+
+  protected exportarExcel(): void {
+    const datos = this.resultado()?.datos ?? [];
+    const ws = XLSX.utils.json_to_sheet(datos.map(a => ({
+      'Código': a.codigoAlumno,
+      'Nombres': a.nombres,
+      'Tipo Certificado': a.tipoCertificado,
+      'Fecha Ingreso': new Date(a.fechaIngreso).toLocaleDateString('es-PE'),
+      'Estado': a.estado,
+      'Anulado': a.anula ? 'Sí' : 'No'
+    })));
+    const wb = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, 'Alumnos');
+    const buffer = XLSX.write(wb, { bookType: 'xlsx', type: 'array' });
+    saveAs(new Blob([buffer]), `alumnos_pagina_${this.paginaActual()}.xlsx`);
+  }
+  
+  protected exportarPDF(): void {
+    const datos = this.resultado()?.datos ?? [];
+    const doc = new jsPDF();
+    doc.text('Listado de Alumnos', 14, 10);
+    autoTable(doc, {
+      head: [['Código', 'Nombres', 'Tipo Certificado', 'Fecha Ingreso', 'Estado', 'Anulado']],
+      body: datos.map(a => [
+        a.codigoAlumno,
+        a.nombres,
+        a.tipoCertificado,
+        new Date(a.fechaIngreso).toLocaleDateString('es-PE'),
+        a.estado,
+        a.anula ? 'Sí' : 'No'
+      ])
+    });
+    doc.save(`alumnos_pagina_${this.paginaActual()}.pdf`);
   }
 }

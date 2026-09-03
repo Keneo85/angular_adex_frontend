@@ -13,11 +13,21 @@
           placeholder="Buscar por nombre..."
           [ngModel]="alumnoService.filtroNombre()"
           (ngModelChange)="onBusquedaChange($event)" />
-      
+
         @if (alumnoService.filtroNombre()) {
           <button class="clear-search-btn" (click)="limpiarBusqueda()">&times;</button>
         }
       </div>
+    </div>
+
+    <!-- Botones de exportación debajo del buscador -->
+    <div class="export-buttons">
+      <button class="btn-export-excel" (click)="exportarExcel()">
+        📥 Exportar Excel
+      </button>
+      <button class="btn-export-pdf" (click)="exportarPDF()">
+        📄 Exportar PDF
+      </button>
     </div>
   </header>
 
@@ -70,7 +80,7 @@
               </td>
             </tr>
           } @empty {
-            <tr><td colspan="5" class="empty-cell">No hay alumnos registrados.</td></tr>
+            <tr><td colspan="6" class="empty-cell">No hay alumnos registrados.</td></tr>
           }
         </tbody>
       </table>
